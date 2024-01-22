@@ -20,5 +20,29 @@
 </div>
 
 <div id="predictionList"></div>
+<script>
+    let generatePredictionsUrl = "{% url 'generate_predictions' %}";
+     function sendRequest() {
+            let text = userInput.value;
+
+            $.ajax({
+                type: "POST",
+                url: generatePredictionsUrl,
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    user_input: text,
+                },
+                success: function (response) {
+                    completedWords = response.completed_words;
+                    displayPredictions(completedWords);
+                    updateInputHistory(text);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+</script>
 </body>
 </html>

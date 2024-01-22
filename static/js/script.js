@@ -29,26 +29,6 @@
             userInput.select();
             document.execCommand("copy");
         }
-        function sendRequest() {
-            let text = userInput.value;
-
-            $.ajax({
-                type: "POST",
-                url: "{% url 'generate_predictions' %}",
-                data: {
-                    csrfmiddlewaretoken: "{{ csrf_token }}",
-                    user_input: text,
-                },
-                success: function (response) {
-                    completedWords = response.completed_words;
-                    displayPredictions(completedWords);
-                    updateInputHistory(text);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
 
         function displayPredictions(completedWords) {
             let predictionList = document.getElementById("predictionList");
