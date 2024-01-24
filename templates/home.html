@@ -10,7 +10,8 @@
     <script defer src="{% static 'js/script.js' %}"></script>
 </head>
 <body>
-<h1>Text Editor</h1>
+<div style="display:flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px">
+    <h1>Text Editor</h1>
 
 <label for="userInput"></label><textarea id="userInput" rows="4" cols="50"></textarea>
 
@@ -20,6 +21,7 @@
 </div>
 
 <div id="predictionList"></div>
+</div>
 <script>
     let generatePredictionsUrl = "{% url 'generate_predictions' %}";
      function sendRequest() {
